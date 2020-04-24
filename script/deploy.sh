@@ -27,19 +27,6 @@ scp ../bin/automatic_unko_bot $HOST:~/automatic_unko_bot/bin/
 ssh $HOST 'chmod 744 ~/automatic_unko_bot/bin/automatic_unko_bot'
 echo "[$HOST] Uploaded an automatic unko bot bin file."
 
-echo "[$HOST] Creating a tmp directory for supervisor if not exists..."
-ssh $HOST 'mkdir -p ~/tmp/supervisor/conf.d/'
-echo "[$HOST] Created a tmp directory for supervisor if not exists."
-
-echo "[$HOST] Uploading a automatic_unko_bot supervisord config file..."
-scp ./automatic_unko_bot.conf $HOST:~/tmp/supervisor/conf.d/
-ssh $HOST 'sudo cp /home/ubuntu/tmp/supervisor/conf.d/automatic_unko_bot.conf /etc/supervisor/conf.d/'
-echo "[$HOST] Uploaded a automatic_unko_bot supervisord config file."
-
-echo "[$HOST] Reloading supervisor..."
-ssh $HOST sudo systemctl reload supervisor.service
-echo "[$HOST] Reloaded supervisor."
-
 echo "[$HOST] Restarting automatic_unko_bot..."
 ssh $HOST sudo supervisorctl restart automatic_unko_bot
 echo "[$HOST] Restarted automatic_unko_bot."
