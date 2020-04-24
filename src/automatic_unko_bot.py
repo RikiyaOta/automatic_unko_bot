@@ -15,8 +15,15 @@ class AutomaticUnkoBot(discord.Client):
         print('Start AutomaticUnkoBot!')
 
     async def on_message(self, message):
-        print('Add 💩 !! HAHA!!!')
-        await message.add_reaction('💩')
+        if message.author.bot:
+            return # Do Nothing.
+
+        elif "うんこぶりぶり💩" in message.content:
+            return await message.channel.send(content = "ぶりゅ！ぶりゅ！ぶりゅりゅりゅ💩", delete_after = 2)
+
+        elif "💩" in message.content:
+            return await message.add_reaction('💩')
+
 
 unko_bot = AutomaticUnkoBot()
 unko_bot.run(bot_token)
