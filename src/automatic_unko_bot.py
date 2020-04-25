@@ -18,8 +18,10 @@ class AutomaticUnkoBot(discord.Client):
         if message.author.bot:
             return # Do Nothing.
 
-        elif "うんこぶりぶり💩" in message.content:
-            return await message.channel.send(content = "ぶりゅ！ぶりゅ！ぶりゅりゅりゅ💩", delete_after = 2)
+        elif message.content in ["うんこぶりぶり💩"]:
+            delete_after = 5
+            content      = f"ぶりゅ！ぶりゅ！ぶりゅりゅりゅ💩💩💩 ({delete_after}秒後に水に流すよ)"
+            return await message.channel.send(content = content, delete_after = delete_after)
 
         elif "💩" in message.content:
             return await message.add_reaction('💩')
